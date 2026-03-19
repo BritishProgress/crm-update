@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM Update — Centre for British Progress</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/x-icon" href="favicon-dark.ico" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="site.webmanifest">
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url(fonts/inter.woff2) format('woff2');
+    }
+    @font-face {
+      font-family: 'Inter Tight';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(fonts/inter-tight.woff2) format('woff2');
+    }
+    @font-face {
+      font-family: 'Inter Tight';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url(fonts/inter-tight.woff2) format('woff2');
+    }
+  </style>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      font-size: 18px;
+      line-height: 32px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-size: 18px;
+      line-height: 32px;
+      font-family: 'Inter', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      background: #FDF9E9;
+      color: #283131;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background-color: #FFFBEA;
+      padding: 26.5px 45px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      border-bottom: 1px solid #293131;
+      max-height: 80px;
+    }
+
+    .logo {
+      font-size: clamp(1rem, 0.8143rem + 0.7619vw, 1.5rem);
+      font-family: 'Inter Tight', sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 550;
+      font-style: normal;
+      color: #293131;
+      gap: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo h1 {
+      font-size: clamp(1rem, 0.8143rem + 0.7619vw, 1.5rem);
+      font-family: 'Inter Tight', sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 550;
+      font-style: normal;
+      line-height: 70px;
+      margin: 0;
+    }
+
+    .logo-svg {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0A4938;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 100%;
+      letter-spacing: 0.01em;
+      text-align: center;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    nav a:hover {
+      border-bottom: 1px solid #FE9F1C;
+    }
+
+    .burger-menu {
+      display: none;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
+    .burger-menu div {
+      width: 15px;
+      height: 1px;
+      background-color: #0A4938;
+      margin: 4px 0;
+      transition: transform 0.3s ease;
+    }
+
+    .burger-menu.active div:first-child {
+      transform: translateY(5px) rotate(45deg);
+    }
+
+    .burger-menu.active div:nth-child(2) {
+      opacity: 0;
+    }
+
+    .burger-menu.active div:nth-child(3) {
+      transform: translateY(-5px) rotate(-45deg);
+    }
+
+    .mobile-nav {
+      position: absolute;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: #FFFDF4;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(-100%);
+      transition: 0.3s ease-in-out;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 499;
+    }
+
+    .mobile-nav.open {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      border-bottom: 1px solid #293131;
+    }
+
+    .mobile-nav ul {
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+    }
+
+    .desktop-nav {
+      display: block;
+    }
+
+    .page-intro {
+      text-align: center;
+      padding: 3rem 1.5rem 0;
+      max-width: 600px;
+    }
+
+    .page-intro h2 {
+      font-size: 1.75rem;
+      font-weight: 550;
+      margin-bottom: 0.5rem;
+      color: #0B4938;
+      animation: fadeSlideIn 0.35s ease forwards 0.1s;
+      opacity: 0;
+    }
+
+    .page-intro p {
+      color: #283131;
+      opacity: 0.6;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      animation: fadeSlideIn 0.35s ease forwards 0.15s;
+      opacity: 0;
+    }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      padding: 2.5rem 1.5rem;
+      max-width: 700px;
+      width: 100%;
+      animation: fadeSlideIn 0.35s ease forwards 0.25s;
+      opacity: 0;
+    }
+
+    .action-btn {
+      flex: 1;
+      background: #fff;
+      border: 2px solid #e5e0cc;
+      border-radius: 10px;
+      padding: 2rem 1.5rem;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      text-align: center;
+      font-family: inherit;
+    }
+
+    .action-btn:hover {
+      border-color: #093D77;
+      background: #d4e6fb;
+    }
+
+    .action-btn.active {
+      border-color: #0B4938;
+      background: #e6fce9;
+      box-shadow: 0 0 0 1px #0B4938;
+    }
+
+    .action-btn .icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .action-btn .label {
+      font-weight: 550;
+      font-size: 1rem;
+      color: #283131;
+    }
+
+    .action-btn .sublabel {
+      font-size: 0.8rem;
+      color: #283131;
+      opacity: 0.55;
+      line-height: 1.4;
+    }
+
+    .iframe-container {
+      width: 100%;
+      max-width: 900px;
+      padding: 0 1.5rem 2rem;
+      flex: 1;
+      display: none;
+      animation: fadeSlideIn 0.3s ease forwards;
+    }
+
+    .iframe-container.visible {
+      display: block;
+    }
+
+    .iframe-container iframe {
+      width: 100%;
+      height: 1200px;
+      border: 1.5px solid #e5e0cc;
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 20px 24px;
+      }
+
+      .desktop-nav {
+        display: none;
+      }
+
+      .burger-menu {
+        display: block;
+      }
+
+      .logo h1 {
+        line-height: 1.3;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .action-btn {
+        padding: 1.5rem 1rem;
+      }
+
+      .iframe-container iframe {
+        height: 70vh;
+        min-height: 500px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <span class="logo-svg"><svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M86.3961 120.713L79.1208 113.371L91.5521 101.037L101.573 104.516L86.4431 120.717L99.4969 199.66L114.45 114.452L199.676 99.487L114.44 85.3721L113.384 79.3576L113.344 79.0837L113.337 79.0911L99.5039 0.3125L85.4118 85.4109L0.328125 99.4801L79.1342 113.309L15.6108 176.861L28.5154 178.639L86.3961 120.713ZM183.277 23.7559L130.672 76.4024L122.954 69.4697L171.414 20.9881L183.277 23.7559Z" fill="#283131"/></svg></span>
+      <a href="https://britishprogress.org"><h1>Centre for British Progress</h1></a>
+    </div>
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="https://britishprogress.org/research">Research</a></li>
+        <li><a href="https://britishprogress.org/uk-day-one">UK Day One</a></li>
+        <li><a href="https://britishprogress.org/about">About</a></li>
+        <li><a href="https://britishprogress.org/opportunities">Opportunities</a></li>
+        <li><a href="https://britishprogress.org/contact">Contact</a></li>
+        <li><a href="https://britishprogress.org/search">Search</a></li>
+      </ul>
+    </nav>
+    <button class="burger-menu" id="burgerMenu" aria-label="Menu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
+  </header>
+  <div class="mobile-nav" id="mobileNav">
+    <nav>
+      <ul>
+        <li><a href="https://britishprogress.org/research">Research</a></li>
+        <li><a href="https://britishprogress.org/uk-day-one">UK Day One</a></li>
+        <li><a href="https://britishprogress.org/about">About</a></li>
+        <li><a href="https://britishprogress.org/opportunities">Opportunities</a></li>
+        <li><a href="https://britishprogress.org/contact">Contact</a></li>
+        <li><a href="https://britishprogress.org/search">Search</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="page-intro">
+    <h2>CRM Update</h2>
+    <p>Record an interaction, add a new person, or log impact.</p>
+  </div>
+
+  <div class="actions">
+    <button class="action-btn" id="btnInteraction" onclick="showForm('interaction')">
+      <div class="icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z" stroke="#0B4938" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="8" y1="9" x2="16" y2="9" stroke="#0B4938" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="8" y1="13" x2="13" y2="13" stroke="#0B4938" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="label">Record Interaction</span>
+      <span class="sublabel">Log a meeting, call, or email with a contact</span>
+    </button>
+    <button class="action-btn" id="btnPerson" onclick="showForm('person')">
+      <div class="icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="8" r="4" stroke="#0B4938" stroke-width="1.5"/>
+          <path d="M20 21c0-3.314-3.582-6-8-6s-8 2.686-8 6" stroke="#0B4938" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18" y1="8" x2="18" y2="14" stroke="#0B4938" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="15" y1="11" x2="21" y2="11" stroke="#0B4938" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="label">Add New Person</span>
+      <span class="sublabel">Add a new contact to the CRM</span>
+    </button>
+    <button class="action-btn" id="btnImpact" onclick="showForm('impact')">
+      <div class="icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="#0B4938" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="label">Record New Impact</span>
+      <span class="sublabel">Log a new impact outcome or achievement</span>
+    </button>
+  </div>
+
+  <div class="iframe-container" id="iframeContainer">
+    <iframe id="formIframe" src="about:blank" scrolling="yes"></iframe>
+  </div>
+
+  <script>
+    const forms = {
+      interaction: 'https://airtable.com/embed/appINLR4clVxEpwol/pagYmHgUyr37rtrN1/form',
+      person: 'https://airtable.com/embed/appINLR4clVxEpwol/pagseCCCRtxv7Bcyc/form',
+      impact: 'https://airtable.com/embed/appINLR4clVxEpwol/pagrYtnhTM6fjPJH8/form'
+    };
+
+    let activeForm = null;
+
+    function showForm(type) {
+      const buttons = {
+        interaction: document.getElementById('btnInteraction'),
+        person: document.getElementById('btnPerson'),
+        impact: document.getElementById('btnImpact')
+      };
+      const container = document.getElementById('iframeContainer');
+      const iframe = document.getElementById('formIframe');
+
+      if (activeForm === type) {
+        activeForm = null;
+        Object.values(buttons).forEach(b => b.classList.remove('active'));
+        container.classList.remove('visible');
+        iframe.src = 'about:blank';
+        return;
+      }
+
+      activeForm = type;
+      Object.entries(buttons).forEach(([key, b]) => b.classList.toggle('active', key === type));
+      iframe.src = forms[type];
+      container.classList.add('visible');
+      container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Burger menu
+    const burger = document.getElementById('burgerMenu');
+    const mobileNav = document.getElementById('mobileNav');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>
