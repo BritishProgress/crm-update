@@ -296,6 +296,81 @@
       background: #fff;
     }
 
+    footer {
+      width: 100%;
+      background-color: #293131;
+      color: #FFFBEA;
+      padding: 29px 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: clamp(0.5rem, 0.4071rem + 0.381vw, 0.75rem);
+      font-weight: 300;
+      line-height: 120%;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: auto;
+    }
+
+    .footer-left {
+      text-align: left;
+      line-height: 14.4px;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .footer-right a {
+      color: #FFFBEA;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 300;
+      font-size: clamp(0.5rem, 0.4071rem + 0.381vw, 0.75rem);
+      letter-spacing: 0.1em;
+      line-height: 14.4px;
+    }
+
+    .foooter-row {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .dd-link {
+      color: #FFFBEA;
+      text-decoration: none;
+      font-weight: 300;
+      opacity: 0.6;
+    }
+
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0,0,0,0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    @media (min-width: 769px) {
+      .mobile-nav { display: none; }
+    }
+
+    @media screen and (max-width: 990px) {
+      .footer-right { gap: 10px; }
+    }
+
     @media (max-width: 768px) {
       header {
         padding: 20px 24px;
@@ -324,6 +399,42 @@
       .iframe-container iframe {
         height: 70vh;
         min-height: 500px;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 16px;
+        font-size: 12px;
+        gap: 16px;
+      }
+      .footer-left {
+        align-self: baseline;
+        text-align: center;
+        width: 100%;
+      }
+      .footer-right {
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer-right a {
+        margin: 0;
+        font-size: 12px;
+      }
+      .foooter-row {
+        justify-content: center;
+        width: 100% !important;
+      }
+      .foooter-row:first-child {
+        justify-content: space-between;
+      }
+      .foooter-row:nth-child(2) {
+        width: auto;
+      }
+      .dd-link {
+        margin-left: auto !important;
       }
     }
   </style>
@@ -407,6 +518,25 @@
   <div class="iframe-container" id="iframeContainer">
     <iframe id="formIframe" src="about:blank" scrolling="yes"></iframe>
   </div>
+
+  <footer>
+    <div class="footer-left">&copy; 2025–2026 Centre for British Progress</div>
+    <div class="footer-right">
+      <div class="foooter-row">
+        <a href="https://britishprogress.org/privacy">Privacy Policy</a>
+        <a href="https://britishprogress.org/cookies">Cookie Policy</a>
+        <a href="https://britishprogress.org/terms">Terms and Conditions</a>
+      </div>
+      <div class="foooter-row">
+        <a href="https://www.linkedin.com/company/britishprogress/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M14.3351 0.351562C14.7777 0.351563 15.2021 0.527386 15.5151 0.840353C15.8281 1.15332 16.0039 1.5778 16.0039 2.0204V13.7023C16.0039 14.1449 15.8281 14.5693 15.5151 14.8823C15.2021 15.1953 14.7777 15.3711 14.3351 15.3711H2.65321C2.21061 15.3711 1.78613 15.1953 1.47317 14.8823C1.1602 14.5693 0.984375 14.1449 0.984375 13.7023V2.0204C0.984375 1.5778 1.1602 1.15332 1.47317 0.840353C1.78613 0.527386 2.21061 0.351563 2.65321 0.351562H14.3351ZM13.9179 13.285V8.86263C13.9179 8.14119 13.6313 7.44929 13.1211 6.93916C12.611 6.42902 11.9191 6.14243 11.1977 6.14243C10.4884 6.14243 9.66233 6.57632 9.26181 7.22717V6.30097H6.93378V13.285H9.26181V9.17136C9.26181 8.52886 9.77915 8.00318 10.4216 8.00318C10.7315 8.00318 11.0286 8.12626 11.2477 8.34533C11.4668 8.56441 11.5898 8.86154 11.5898 9.17136V13.285H13.9179ZM4.22192 4.99093C4.59371 4.99093 4.95026 4.84324 5.21316 4.58034C5.47605 4.31745 5.62374 3.96089 5.62374 3.58911C5.62374 2.8131 4.99793 2.17894 4.22192 2.17894C3.84792 2.17894 3.48924 2.32751 3.22478 2.59197C2.96032 2.85642 2.81175 3.21511 2.81175 3.58911C2.81175 4.36512 3.44591 4.99093 4.22192 4.99093ZM5.38176 13.285V6.30097H3.07042V13.285H5.38176Z" fill="#FFFBEA"/></svg><span class="sr-only">LinkedIn</span></a>
+        <a href="https://britishprogress.substack.com/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to our newsletter"><svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M14.0148 3.60449H0.015625V5.49546H14.0148V3.60449Z" fill="#FFFBEA"/><path d="M0.015625 7.20801V15.9998L7.01491 12.0734L14.0154 15.9998V7.20801H0.015625Z" fill="#FFFBEA"/><path d="M14.0148 0H0.015625V1.89066H14.0148V0Z" fill="#FFFBEA"/></svg><span class="sr-only">Newsletter</span></a>
+        <a href="https://x.com/britishprogress" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X"><svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8.93669 6.85221L14.517 0.5H13.1951L8.34768 6.0144L4.47891 0.5H0.015625L5.86725 8.83955L0.015625 15.5H1.33752L6.45326 9.67535L10.5399 15.5H15.0031M1.81463 1.47619H3.84543L13.1941 14.5718H11.1628" fill="#FFFBEA"/></svg><span class="sr-only">X</span></a>
+        <a href="https://bsky.app/profile/britishprogress.org" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Bluesky"><svg fill="none" viewBox="0 0 64 57" width="17.5" height="16" aria-hidden="true"><path fill="#FFFBEA" d="M13.873 3.805C21.21 9.332 29.103 20.537 32 26.55v15.882c0-.338-.13.044-.41.867-1.512 4.456-7.418 21.847-20.923 7.944-7.111-7.32-3.819-14.64 9.125-16.85-7.405 1.264-15.73-.825-18.014-9.015C1.12 23.022 0 8.51 0 6.55 0-3.268 8.579-.182 13.873 3.805ZM50.127 3.805C42.79 9.332 34.897 20.537 32 26.55v15.882c0-.338.13.044.41.867 1.512 4.456 7.418 21.847 20.923 7.944 7.111-7.32 3.819-14.64-9.125-16.85 7.405 1.264 15.73-.825 18.014-9.015C62.88 23.022 64 8.51 64 6.55c0-9.818-8.578-6.732-13.873-2.745Z"/></svg><span class="sr-only">Bluesky</span></a>
+      </div>
+      <a href="https://and-now.co.uk/" class="dd-link" target="_blank">Website designed by AND-NOW</a>
+      <a href="https://kappa.work/" class="dd-link" target="_blank">Built by Kappa</a>
+    </div>
+  </footer>
 
   <script>
     const forms = {
